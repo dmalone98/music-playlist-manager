@@ -10,7 +10,7 @@ The Music Playlist Manager allows users to create and manage playlists of their 
 
 - View a list of available songs.
 - Create new songs.
-- Delete songs
+- Delete songs.
 
 ## Getting Started
 
