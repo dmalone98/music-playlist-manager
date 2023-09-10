@@ -5,32 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}"></script> 
-    <title>Add Song - Music Playlist Manager</title>
+    <title>{{ action_text }} Song - Music Playlist Manager</title>
 </head>
 <body>
     <div class="container">
-        <h1>Add a Song</h1>
-        <form action="/add_song" method="POST">
+        <div class="form-group">
+            <a href="{{ url_for('index') }}" class="song-button">Main Page</a>
+        </div>
+        <h1>{{ action_text }} a Song</h1>
+        <form action="{{ form_action }}" method="POST">
             <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" id="title" name="title" required minlength="1" maxlength="100" class="dynamic-width">
+                <input type="text" id="title" name="title" required minlength="1" maxlength="100" class="dynamic-width" value="{{ song.title }}">
                 <small class="form-error">Title is required.</small>
             </div>
 
             <div class="form-group">
                 <label for="artist">Artist:</label>
-                <input type="text" id="artist" name="artist" maxlength="100" class="dynamic-width">
+                <input type="text" id="artist" name="artist" maxlength="100" class="dynamic-width" value="{{ song.artist }}">
             </div>
 
             <div class="form-group">
                 <label for="duration">Duration (mm:ss):</label>
-                <input type="text" id="duration" name="duration" pattern="\d+:\d{2}" title="Use format 'mm:ss'" maxlength="8" class="dynamic-width">
+                <input type="text" id="duration" name="duration" pattern="\d+:\d{2}" title="Use format 'mm:ss'" maxlength="8" class="dynamic-width" value="{{ song.duration }}">
                 <small class="form-error">Enter a valid duration (format: 'mm:ss').</small>
             </div>
 
             <div class="form-group">
-                <button type="submit" class="song-button">Add Song</button>
-            </div>
+                <button type="submit" class="song-button">{{ action_text }} Song</button>
+            </div>            
         </form>
     </div>
 </body>

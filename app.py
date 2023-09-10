@@ -3,6 +3,7 @@ from db.db import db, Song, Playlist
 import os
 
 app = Flask(__name__)
+app.secret_key = 'mpm-app-MMXXIII' 
 
 # Get the project's root directory
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -31,6 +32,10 @@ from flask import render_template
 
 @app.route('/add_song', methods=['GET', 'POST'])
 def add_song():
+    song = None
+    form_action = '/add_song'
+    action_text = 'Add'
+
     if request.method == 'POST':
         title = request.form['title']
         artist = request.form['artist']
@@ -41,14 +46,18 @@ def add_song():
         db.session.add(new_song)
         db.session.commit()
 
+        #flash('Song added successfully', 'success')
         return redirect(url_for('index'))  # Redirect to the index page after adding the song
     else:
-        return render_template('song_form.html')
+        return render_template('song_form.html', song=song, form_action=form_action, action_text=action_text)
+
     
 @app.route('/edit_song/<int:song_id>', methods=['GET', 'POST'])
 def edit_song(song_id):
     # Fetch the song from the database using song_id
     song = Song.query.get_or_404(song_id)
+    form_action = f'/edit_song/{song_id}'
+    action_text = 'Update'
 
     if request.method == 'POST':
         # Handle form submission with updated song details
@@ -60,9 +69,9 @@ def edit_song(song_id):
         db.session.commit()
 
         flash('Song updated successfully', 'success')
-        return redirect('/')
-
-    return render_template('edit_song.html', song=song)
+        return redirect(url_for('index'))  # Redirect to the index page after adding the song
+    else:
+        return render_template('song_form.html', song=song, form_action=form_action, action_text=action_text)
     
 @app.route('/delete_song/<int:song_id>', methods=['POST'])
 def delete_song(song_id):
