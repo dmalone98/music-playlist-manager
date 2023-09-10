@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script> 
     <title>Music Playlist Manager</title>
 </head>
 <body>
@@ -15,6 +16,7 @@
                     <th>Title</th>
                     <th>Artist</th>
                     <th>Duration</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +25,11 @@
                         <td>{{ song.title }}</td>
                         <td>{{ song.artist }}</td>
                         <td>{{ song.duration }}</td>
+                        <td>
+                            <form action="/delete_song/{{ song.id }}" method="POST" onsubmit="return confirmDelete('{{ song.title }}');">
+                                <button type="submit" class="delete-button">Delete</button>
+                            </form>                            
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
