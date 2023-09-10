@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Add Song - Music Playlist Manager</title>
+</head>
+<body>
+    <h1>Add a Song</h1>
+    <form action="/add_song" method="POST">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="artist">Artist:</label>
+            <input type="text" id="artist" name="artist">
+        </div>
+
+        <div class="form-group">
+            <label for="duration">Duration:</label>
+            <input type="text" id="duration" name="duration">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="song-button">Add Song</button>
+        </div>
+    </form>
+</body>
+</html>

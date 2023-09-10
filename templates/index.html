@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Music Playlist Manager</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Music Playlist</h1>
+        <table class="song-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for song in songs %}
+                    <tr>
+                        <td>{{ song.title }}</td>
+                        <td>{{ song.artist }}</td>
+                        <td>{{ song.duration }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="song-button" href="/add_song">New Song</a>
+    </div>
+</body>
+</html>
