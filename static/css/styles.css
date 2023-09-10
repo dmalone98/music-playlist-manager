@@ -48,8 +48,8 @@ body {
 
 /* Center the form container */
 .container {
-    width: 400px;
-    margin: 0 auto;
+    width: 400px; /* Fixed width */
+    margin: 0 auto; /* Center the container horizontally */
     background-color: #fff;
     border: 1px solid #ccc;
     padding: 20px;
@@ -67,8 +67,8 @@ label {
     font-weight: bold;
 }
 
-input[type="text"] {
-    width: 100%;
+input[type="text"].dynamic-width {
+    width: auto; /* Set width to auto to adjust based on content */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
