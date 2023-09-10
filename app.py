@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, url_for
 from db.db import db, Song, Playlist
 import os
 
@@ -43,7 +43,26 @@ def add_song():
 
         return redirect(url_for('index'))  # Redirect to the index page after adding the song
     else:
-        return render_template('add_song.html')
+        return render_template('song_form.html')
+    
+@app.route('/edit_song/<int:song_id>', methods=['GET', 'POST'])
+def edit_song(song_id):
+    # Fetch the song from the database using song_id
+    song = Song.query.get_or_404(song_id)
+
+    if request.method == 'POST':
+        # Handle form submission with updated song details
+        song.title = request.form['title']
+        song.artist = request.form['artist']
+        song.duration = request.form['duration']
+
+        # Save the changes to the database
+        db.session.commit()
+
+        flash('Song updated successfully', 'success')
+        return redirect('/')
+
+    return render_template('edit_song.html', song=song)
     
 @app.route('/delete_song/<int:song_id>', methods=['POST'])
 def delete_song(song_id):

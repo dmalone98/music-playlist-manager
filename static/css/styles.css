@@ -92,11 +92,12 @@ input[type="text"].dynamic-width {
     background-color: #0056b3;
 }
 
-/* Style the Delete button */
-.delete-button {
-    background-color: #ff0000; /* Red background */
+/* Style the Delete/Edit buttons */
+.manage-button {
+    width: 50px; /* Set a fixed width for both buttons */
+    text-align: center; /* Center-align text within the buttons */
     color: #fff; /* White text */
-    padding: 5px 10px;
+    padding: 5px 0; /* Vertical padding */
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -105,9 +106,24 @@ input[type="text"].dynamic-width {
     display: inline-block; /* Make the button inline */
 }
 
-.delete-button:hover {
-    background-color: #ff3333; /* Slightly darker red on hover */
+/* Style the Delete button */
+.delete-button {
+    background-color: #ff0000; /* Red background */
 }
+
+.delete-button:hover {
+    background-color: #770000; /* Slightly darker red on hover */
+}
+
+/* Style the Edit button */
+.edit-button {
+    background-color: #ff8800; /* Orange background */
+}
+
+.edit-button:hover {
+    background-color: #aa7700; /* Slightly darker orange on hover */
+}
+
 
 /* Error message styling */
 .form-error {

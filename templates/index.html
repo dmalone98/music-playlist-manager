@@ -26,11 +26,15 @@
                         <td>{{ song.artist }}</td>
                         <td>{{ song.duration }}</td>
                         <td>
+                            <form action="/edit_song/{{ song.id }}" method="GET">
+                                <button type="submit" class="manage-button edit-button">Edit</button>
+                            </form>
                             <form action="/delete_song/{{ song.id }}" method="POST" onsubmit="return confirmDelete('{{ song.title }}');">
-                                <button type="submit" class="delete-button">Delete</button>
-                            </form>                            
+                                <button type="submit" class="manage-button delete-button">Delete</button>
+                            </form>
                         </td>
                     </tr>
+                    
                 {% endfor %}
             </tbody>
         </table>
